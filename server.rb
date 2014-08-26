@@ -16,7 +16,7 @@ end
 
 get '/actors' do
   db_connection do |conn|
-    results = conn.exec('SELECT name FROM actors ORDER BY name')
+    results = conn.exec('SELECT id, name FROM actors ORDER BY name')
     @actors = results.to_a
   end
 
@@ -25,7 +25,16 @@ get '/actors' do
 end
 
 get '/movies' do
-
+  db_connection do |conn|
+    results = conn.exec('SELECT movies.id AS id, movies.title AS movie, movies.year AS year, movies.rating AS rating,
+      genres.name AS genre, studios.name AS studio
+      FROM movies
+      JOIN genres ON movies.genre_id = genres.id
+      JOIN studios ON movies.studio_id = studios.id
+      ORDER BY movie')
+    @movies = results.to_a
+    #binding.pry
+  end
   erb :'movies/index'
 end
 
