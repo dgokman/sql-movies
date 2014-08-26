@@ -6,15 +6,14 @@
     <link rel="stylesheet" href="/home.css" />
 
     <body>
-    <h1><%= @movie_movie %></h1>
+    <h1><%= @movies_id[0]["movie"] %></h1>
 
     <h2>Details:</h2>
 
-    <li>Genre - <%= @genre_movie %></li>
-    <li>Studio - <%= @studio_movie %></li>
-    <% @movies_hash.each do |key, value| if (key == @movie_id) %>
-    <li>Actors - <a href="/actors/<%= @actor_id_movie %>"><%= @actor_movie %></a> - <%= @role_movie %></li>
-      <% end %>
+    <li>Genre - <%= @movies_id[0]["genre"] %></li>
+    <li>Studio - <%= @movies_id[0]["studio"] %></li>
+    <% @movies_id.each do |movie| %>
+    <li>Actors - <a href="/actors/<%= movie["actor_id"] %>"><%= movie["actor"] %></a>  <%= movie["role"] %></li>
     <% end %>
 
 
