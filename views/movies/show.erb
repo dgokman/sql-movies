@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Movies</title>
+    <link rel="stylesheet" href="/home.css" />
+
+    <body>
+    <h1><%= @movie_movie %></h1>
+
+    <h2>Details:</h2>
+
+    <li>Genre - <%= @genre_movie %></li>
+    <li>Studio - <%= @studio_movie %></li>
+    <% @movies_hash.each do |key, value| if (key == @movie_id) %>
+    <li>Actors - <a href="/actors/<%= @actor_id_movie %>"><%= @actor_movie %></a> - <%= @role_movie %></li>
+      <% end %>
+    <% end %>
+
+
+    </body>
+
+</html>
