@@ -41,6 +41,7 @@ get '/actors/:id' do
 end
 
 get '/movies' do
+  @order = params[:order]
   db_connection do |conn|
     results = conn.exec('SELECT movies.id AS id, movies.title AS movie, movies.year AS year, movies.rating AS rating,
       genres.name AS genre, studios.name AS studio
@@ -51,6 +52,10 @@ get '/movies' do
     @movies = results.to_a
 
   end
+
+  @year_movies = @movies.sort_by { |movie| movie["year"] }
+  @rating_movies = @movies.sort_by { |movie| -movie["rating"].to_i }
+
   erb :'movies/index'
 end
 
