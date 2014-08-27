@@ -6,12 +6,18 @@
     <link rel="stylesheet" href="/home.css" />
 
     <body>
+    <form action="/movies" method="get">
+    <label for="query">Search: </label>
+    <input type="text" name="query" id="query" />
+    <input type="submit" value="Search" /><br>
     <% if @page != nil && @page != "1" %>
     <a href="/movies?page=<%= @previous_page %>">
     <%= "Previous Page" %></a>
     <% end %>
+    <% if @order.nil? %>
     <a href="/movies?page=<%= @next_page %>">
     <%= "Next Page" %></a><br>
+    <% end %>
     <a href="/movies?order=year">Sort by Year</a><br>
     <a href="/movies?order=rating">Sort by Rating</a><br>
     <a href="/movies">Sort by Title</a><br>
