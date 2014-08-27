@@ -6,9 +6,17 @@
     <link rel="stylesheet" href="/home.css" />
 
     <body>
+    <% if @page != nil && @page != "1" %>
+    <a href="/movies?page=<%= @previous_page %>">
+    <%= "Previous Page" %></a>
+    <% end %>
+    <a href="/movies?page=<%= @next_page %>">
+    <%= "Next Page" %></a><br>
+    <a href="/movies?order=year">Sort by Year</a><br>
+    <a href="/movies?order=rating">Sort by Rating</a><br>
+    <a href="/movies">Sort by Title</a><br>
      <table>
-     <a href="/movies?order=year">Sort by Year</a><br> <a href="/movies?order=rating">Sort by Rating</a><br>
-     <a href="/movies">Sort by Title</a><br>
+
       <th>Movie</th>
       <th>Year</th>
       <th>Rating</th>
